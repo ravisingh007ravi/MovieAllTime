@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
 import logo from '../Images/favicon.png'
 
-function Navbar() {
+export default function Navbar() {
+
+    const naviget = [
+        { Name: 'Hollywood', href: '#/' },
+        { Name: 'Bollywood', href: '#/' },
+        { Name: 'South', href: '#/' },
+        { Name: 'Anime', href: '#/' },
+    ]
 
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [menu, setMenu] = useState(false)
@@ -9,6 +16,7 @@ function Navbar() {
     const handleChange = () => {
         setMenu(!menu)
     }
+
 
     return (
         <div>
@@ -20,12 +28,15 @@ function Navbar() {
                 </a>
 
                 <ul className='hidden xl:flex items-center gap-12 font-semibold text-base'>
-                    <li><a className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all cursor-pointer' href="#/">Hollywood</a></li>
-                    <li><a className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all cursor-pointer' href="#/">Bollywood</a></li>
-                    <li><a className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all cursor-pointer' href="#/">South</a></li>
-                    <li><a className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all cursor-pointer' href="#/">Anime</a></li>
+
+                    {
+                        naviget.map((value) => (
+                            <li><a className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all cursor-pointer' href={value.href}>{value.Name}</a></li>
+                        ))
+                    }
                 </ul>
-                <div className='relative hidden md:flex items-center justify-center gap-3'>
+
+                <div className='relative hidden sm:flex items-center justify-center gap-3'>
                     <i className="fa-solid fa-magnifying-glass absolute left-3 text-2xl text-gray-500" />
                     <input className='py-2 pl-10 rounded-xl border-2 border-blue-300 focus:bg-slate-100 focus:outline-sky-500' type="text" placeholder='Search...' />
 
@@ -49,18 +60,17 @@ function Navbar() {
                             (<i className="fa-solid fa-bars block text-5xl cursor-pointer xl:hidden"
                                 onClick={handleChange} />)
                     }
-                    
+
                 </div>
 
-                <div className={`absolute xl:hidden top-[70px] left-0 w-full bg-white flex flex-col items-center gap-6 
-                pb-5 font-semibold text-lg transform transition-transform ${isMenuOpen ? "opacity-100" : "opacity-0"}`}
-                    style={{ transform: "transform 0.3s ease, opacity 0.3s ease" }}
-                >
+                <div className={`absolute xl:hidden  top-[70px] left-0 w-full bg-white flex flex-col items-center gap-6 
+                pb-5 font-semibold text-lg transform transition-transform ${isMenuOpen ? "opacity-100" : "opacity-0"}`}>
 
-                    <div><a className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all cursor-pointer' href="#/">Hollywood</a></div>
-                    <div><a className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all cursor-pointer' href="#/">Bollywood</a></div>
-                    <div><a className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all cursor-pointer' href="#/">South</a></div>
-                    <div><a className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all cursor-pointer' href="#/">Anime</a></div>
+                    {
+                        naviget.map((value) => (
+                            <div><a className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all cursor-pointer' href={value.href}>{value.Name}</a></div>
+                        ))
+                    }
 
                 </div>
 
@@ -70,4 +80,4 @@ function Navbar() {
     )
 }
 
-export default Navbar
+ 
