@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import logo from '../Images/favicon.png'
+import Dropdown from './Dropdown'
 
 export default function Navbar() {
 
     const naviget = [
-        { Name: 'Hollywood', href: '#/' },
-        { Name: 'Bollywood', href: '#/' },
-        { Name: 'South', href: '#/' },
-        { Name: 'Anime', href: '#/' },
+        { Name: 'Hollywood', href: '/Hollywood' },
+        { Name: 'Bollywood', href: '/Bollywood' },
+        { Name: 'South', href: '/South' },
+        { Name: 'Anime', href: '/Anime' }
     ]
 
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -21,9 +22,9 @@ export default function Navbar() {
     return (
         <div>
 
-            <nav className='fixed w-full flex justify-between items-center text-black py-6 px-8 md:px-32 h-[70px]  bg-white drop-shadow-md'>
+            <nav className='fixed w-full flex justify-between items-center text-black py-6 px-8 md:px-32 h-[70px]  bg-white'>
 
-                <a href="#/">
+                <a href="/">
                     <img className='w-[50px] hover:scale-105 transition-all cursor-pointer' src={logo} alt="logo" />
                 </a>
 
@@ -34,6 +35,9 @@ export default function Navbar() {
                             <li><a className='p-3 hover:bg-sky-400 hover:text-white rounded-md transition-all cursor-pointer' href={value.href}>{value.Name}</a></li>
                         ))
                     }
+
+                    <Dropdown/>
+                
                 </ul>
 
                 <div className='relative hidden sm:flex items-center justify-center gap-3'>
@@ -51,7 +55,7 @@ export default function Navbar() {
 
 
 
-
+ 
                 <div onClick={() => setIsMenuOpen(!isMenuOpen)}>
 
                     {

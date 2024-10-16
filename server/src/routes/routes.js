@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const router = express.Router();
-const { createUser } = require('../controller/UserControler');
+const { createUser, getallUserData } = require('../controller/UserControler');
 const { restPassword } = require('../controller/nodemailer')
 
 
@@ -9,6 +9,7 @@ const upload = multer({ storage: multer.diskStorage({}), });
 
 router.post("/register", upload.single('profileImg'), createUser);
 router.post("/restPassword", upload.single(), restPassword);
+router.get("/getallUserData", getallUserData);
 
 
 // router.post("/login", logInUserData);
