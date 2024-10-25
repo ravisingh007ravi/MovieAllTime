@@ -17,4 +17,4 @@ mongoose.connect(process.env.DB)
 
 app.use('/',router);
 
-app.listen(port,()=>{console.log(`Server is Running ${port}💕`)})
+app.listen(port,()=>{console.log(`Server is Running ${port} 💕`)})
