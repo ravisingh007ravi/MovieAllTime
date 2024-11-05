@@ -66,6 +66,7 @@ export default function Navbar() {
                     }
 
                 </div>
+                
 
                 <div className={`absolute xl:hidden  top-[70px] left-0 w-full bg-white flex flex-col items-center gap-6 
                 pb-5 font-semibold text-lg transform transition-transform ${isMenuOpen ? "opacity-100" : "opacity-0"}`}>

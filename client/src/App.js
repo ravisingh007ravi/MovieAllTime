@@ -1,15 +1,17 @@
-import {Navbar, Hollywood, SignUp} from './components/AllComponets'
-
+// import {Navbar, Hollywood, SignUp} from './components/AllComponets'
+import UppercaseConverter from "./components/UppercaseConverter"
 
 function App() {
   return (
     <div>
-      <Navbar/>
+      {/* <Navbar/>
       <Hollywood/>
-      <SignUp/>
-    
+      <SignUp/> */}
+    <UppercaseConverter/>
     </div>
   )
 }
 
 export default App
+
+
