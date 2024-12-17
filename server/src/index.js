@@ -1,20 +1,21 @@
+
 const express = require('express');
 const mongoose = require('mongoose');
-const router = require('./routes/routes');
 const cors = require('cors');
-require('dotenv').config();
+const router = require('./routes/routes')
+require('dotenv').config()
 
-const app = express();
+const app = express()
+
 app.use(express.json())
-app.use(cors());
+app.use(cors())
 
-const port = process.env.PORT || 5000; 
+const portId = 5000 || process.env.PORT ;
 
 
-mongoose.connect(process.env.DB)
-.then(()=>{ console.log('Successfully Connected DataBase 😊💕😊')})
-.catch((e)=>{console.log(e)})
+mongoose.connect(process.env.MongooseDB)
+    .then(() => { console.log('MongoDB connected') })
+    .catch((err) => { console.log(err); })
 
-app.use('/',router);
-
-app.listen(port,()=>{console.log(`Server is Running ${port} 💕`)})
+app.use('/',router) 
+app.listen(portId, () => { console.log(`Server is running ${portId}`); })

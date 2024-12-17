@@ -1,23 +1,27 @@
 const express = require('express');
-const multer = require('multer');
-const router = express.Router();
-const { createUser, getallUserData } = require('../controller/UserControler');
-const { restPassword } = require('../controller/nodemailer')
+const router = express.Router()
+const multer = require('multer')//used to upload img or videos
+const { CreateUsers, UserLogIn  } = require('../controller/usercontroller')
+const { CreateAdmin, getAllUserData, AdminLogIn } = require('../controller/adminController')
+const { CreateShopkeeper } = require('../controller/shopkeeperController')
 
+const upload = multer({ storage: multer.diskStorage({}), })
 
-const upload = multer({ storage: multer.diskStorage({}), });
+// User API's
+router.post('/CreateUsers', upload.single('profileimg'), CreateUsers)
+router.post('/UserLogIn', upload.single(), UserLogIn)
 
-router.post("/register", upload.single('profileImg'), createUser);
-router.post("/restPassword", upload.single(), restPassword);
-router.get("/getallUserData", getallUserData);
+// Admin Api's
+router.post('/CreateAdmin', upload.single(), CreateAdmin)
+router.post('/AdminLogIn', upload.single(), AdminLogIn)
+router.get('/getAllUserData', getAllUserData)
 
+// Shopkeeper API's
+router.post('/CreateShopkeeper', upload.single(), CreateShopkeeper)
 
-// router.post("/login", logInUserData);
-// router.get("/user/:userId/profile", authentication, authorization, checkUserId, getUserData);
-// router.put("/user/:userId/profile", authentication, authorization, checkUserId, updateUserData);
 
 router.all('/*', (req, res) => {
-    return res.status(404).send({ status: false, msg: "Invalid URL" });
-});
+    return res.status(400).send({ status: false, msg: 'Invalid Url' })
+})
 
 module.exports = router;
